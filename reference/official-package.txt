@@ -1,0 +1,18 @@
+new Debian package, version 2.0.
+size 236990 bytes: control archive=466 bytes.
+    523 bytes,    15 lines      control
+Package: me.lau.atria
+Version: 1.4.1
+Architecture: iphoneos-arm64
+Section: Tweaks
+Maintainer: ren7995 <lau7995ren@gmail.com>
+Author: ren7995 <lau7995ren@gmail.com>
+Installed-Size: 886
+Depends: firmware (>= 13.0), mobilesubstrate, preferenceloader, ws.hbang.alderis (>= 1.1)
+Conflicts: com.irepo.boxy4, me.kritanta.homepluspro
+Name: Atria
+Description: A proper homescreen layout editor for iOS 13-16
+Icon: https://img.chariz.cloud/icon/atria/icon@3x.png
+Depiction: https://chariz.com/get/atria
+Tag: compatible_min::ios13.0
+

@@ -1,0 +1,55 @@
+name: Atria macOS baseline
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.4'
+      - name: Install build dependencies
+        run: brew install make ldid xz dpkg
+      - name: Install isolated Theos and SDK
+        run: |
+          git clone --depth 1 --recursive https://github.com/theos/theos.git "$RUNNER_TEMP/theos"
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/theos/sdks.git "$RUNNER_TEMP/theos-sdks"
+          git -C "$RUNNER_TEMP/theos-sdks" sparse-checkout set iPhoneOS16.5.sdk
+          cp -R "$RUNNER_TEMP/theos-sdks/iPhoneOS16.5.sdk" "$RUNNER_TEMP/theos/sdks/"
+          test -f "$RUNNER_TEMP/theos/vendor/lib/iphone/rootless/libcolorpicker.tbd"
+          xcodebuild -version
+          xcrun clang --version
+          git -C "$RUNNER_TEMP/theos" rev-parse HEAD
+          git -C "$RUNNER_TEMP/theos-sdks" rev-parse HEAD
+      - name: Build rootless baseline (no allemande)
+        env:
+          THEOS: ${{ runner.temp }}/theos
+          THEOS_PACKAGE_SCHEME: rootless
+        run: |
+          set -e
+          "$(brew --prefix make)/bin/gmake" clean package FINALPACKAGE=1
+      - name: Verify artifacts and record provenance
+        run: |
+          set -e
+          mkdir -p build-report
+          {
+            echo "Source commit: $GITHUB_SHA"
+            xcodebuild -version
+            xcrun clang --version
+            echo "Theos commit: $(git -C "$RUNNER_TEMP/theos" rev-parse HEAD)"
+            echo "SDK repository commit: $(git -C "$RUNNER_TEMP/theos-sdks" rev-parse HEAD)"
+          } > build-report/provenance.txt
+          python3 tools/verify-package.py packages/*_iphoneos-arm64.deb build-report
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atria-ios17-baseline-${{ github.run_number }}
+          path: |
+            packages/*_iphoneos-arm64.deb
+            build-report/**
+          if-no-files-found: error

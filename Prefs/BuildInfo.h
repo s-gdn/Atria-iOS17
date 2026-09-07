@@ -1,0 +1,5 @@
+#ifndef ATRIA_BASELINE_BUILD_INFO_H
+#define ATRIA_BASELINE_BUILD_INFO_H
+#define PACKAGE_VERSION "1.4.1-17baseline1"
+#define PACKAGE_TYPE "Rootless"
+#endif

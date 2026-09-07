@@ -1,0 +1,493 @@
+/mnt/data/atria-reference/root/var/jb/Library/PreferenceBundles/AtriaPrefs.bundle/AtriaPrefs:
+Mach header
+      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+MH_MAGIC_64   ARM64          E PAC00       DYLIB    27       3160   NOUNDEFS DYLDLINK TWOLEVEL NO_REEXPORTED_DYLIBS
+Load command 0
+      cmd LC_SEGMENT_64
+  cmdsize 872
+  segname __TEXT
+   vmaddr 0x0000000000000000
+   vmsize 0x000000000000c000
+  fileoff 0
+ filesize 49152
+  maxprot r-x
+ initprot r-x
+   nsects 10
+    flags (none)
+Section
+  sectname __text
+   segname __TEXT
+      addr 0x0000000000007eac
+      size 0x0000000000002524
+    offset 32428
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0
+ reserved2 0
+Section
+  sectname __auth_stubs
+   segname __TEXT
+      addr 0x000000000000a3d0
+      size 0x0000000000000110
+    offset 41936
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_SYMBOL_STUBS
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0 (index into indirect symbol table)
+ reserved2 16 (size of stubs)
+Section
+  sectname __objc_stubs
+   segname __TEXT
+      addr 0x000000000000a4e0
+      size 0x0000000000000b40
+    offset 42208
+     align 2^5 (32)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_methlist
+   segname __TEXT
+      addr 0x000000000000b020
+      size 0x000000000000013c
+    offset 45088
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __cstring
+   segname __TEXT
+      addr 0x000000000000b15c
+      size 0x0000000000000409
+    offset 45404
+     align 2^0 (1)
+    reloff 0
+    nreloc 0
+      type S_CSTRING_LITERALS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_classname
+   segname __TEXT
+      addr 0x000000000000b565
+      size 0x0000000000000060
+    offset 46437
+     align 2^0 (1)
+    reloff 0
+    nreloc 0
+      type S_CSTRING_LITERALS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_methname
+   segname __TEXT
+      addr 0x000000000000b5c6
+      size 0x00000000000008b0
+    offset 46534
+     align 2^1 (2)
+    reloff 0
+    nreloc 0
+      type S_CSTRING_LITERALS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_methtype
+   segname __TEXT
+      addr 0x000000000000be76
+      size 0x000000000000008c
+    offset 48758
+     align 2^0 (1)
+    reloff 0
+    nreloc 0
+      type S_CSTRING_LITERALS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __const
+   segname __TEXT
+      addr 0x000000000000bf08
+      size 0x0000000000000020
+    offset 48904
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __unwind_info
+   segname __TEXT
+      addr 0x000000000000bf28
+      size 0x00000000000000c4
+    offset 48936
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Load command 1
+      cmd LC_SEGMENT_64
+  cmdsize 552
+  segname __DATA_CONST
+   vmaddr 0x000000000000c000
+   vmsize 0x0000000000004000
+  fileoff 49152
+ filesize 16384
+  maxprot rw-
+ initprot rw-
+   nsects 6
+    flags SG_READ_ONLY
+Section
+  sectname __auth_got
+   segname __DATA_CONST
+      addr 0x000000000000c000
+      size 0x0000000000000090
+    offset 49152
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_NON_LAZY_SYMBOL_POINTERS
+attributes (none)
+ reserved1 17 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __got
+   segname __DATA_CONST
+      addr 0x000000000000c090
+      size 0x0000000000000038
+    offset 49296
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_NON_LAZY_SYMBOL_POINTERS
+attributes (none)
+ reserved1 35 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __const
+   segname __DATA_CONST
+      addr 0x000000000000c0c8
+      size 0x00000000000000e0
+    offset 49352
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __cfstring
+   segname __DATA_CONST
+      addr 0x000000000000c1a8
+      size 0x0000000000000480
+    offset 49576
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_classlist
+   segname __DATA_CONST
+      addr 0x000000000000c628
+      size 0x0000000000000028
+    offset 50728
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes NO_DEAD_STRIP
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_imageinfo
+   segname __DATA_CONST
+      addr 0x000000000000c650
+      size 0x0000000000000008
+    offset 50768
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Load command 2
+      cmd LC_SEGMENT_64
+  cmdsize 552
+  segname __DATA
+   vmaddr 0x0000000000010000
+   vmsize 0x0000000000004000
+  fileoff 65536
+ filesize 16384
+  maxprot rw-
+ initprot rw-
+   nsects 6
+    flags (none)
+Section
+  sectname __objc_const
+   segname __DATA
+      addr 0x0000000000010000
+      size 0x00000000000003a8
+    offset 65536
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_selrefs
+   segname __DATA
+      addr 0x00000000000103a8
+      size 0x0000000000000350
+    offset 66472
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_LITERAL_POINTERS
+attributes NO_DEAD_STRIP
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_classrefs
+   segname __DATA
+      addr 0x00000000000106f8
+      size 0x00000000000000d8
+    offset 67320
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes NO_DEAD_STRIP
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_superrefs
+   segname __DATA
+      addr 0x00000000000107d0
+      size 0x0000000000000018
+    offset 67536
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes NO_DEAD_STRIP
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_ivar
+   segname __DATA
+      addr 0x00000000000107e8
+      size 0x0000000000000018
+    offset 67560
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_data
+   segname __DATA
+      addr 0x0000000000010800
+      size 0x0000000000000190
+    offset 67584
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Load command 3
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __LINKEDIT
+   vmaddr 0x0000000000014000
+   vmsize 0x0000000000004000
+  fileoff 81920
+ filesize 6960
+  maxprot r--
+ initprot r--
+   nsects 0
+    flags (none)
+Load command 4
+          cmd LC_ID_DYLIB
+      cmdsize 96
+         name /Users/ren/Tweaks/Atria/.theos/obj/arm64e/AtriaPrefs.bundle/AtriaPrefs (offset 24)
+   time stamp 1 Thu Jan  1 00:00:01 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 5
+      cmd LC_DYLD_CHAINED_FIXUPS
+  cmdsize 16
+  dataoff 81920
+ datasize 1808
+Load command 6
+      cmd LC_DYLD_EXPORTS_TRIE
+  cmdsize 16
+  dataoff 83728
+ datasize 280
+Load command 7
+     cmd LC_SYMTAB
+ cmdsize 24
+  symoff 84064
+   nsyms 71
+  stroff 85368
+ strsize 1824
+Load command 8
+            cmd LC_DYSYMTAB
+        cmdsize 80
+      ilocalsym 0
+      nlocalsym 1
+     iextdefsym 1
+     nextdefsym 10
+      iundefsym 11
+      nundefsym 60
+         tocoff 0
+           ntoc 0
+      modtaboff 0
+        nmodtab 0
+   extrefsymoff 0
+    nextrefsyms 0
+ indirectsymoff 85200
+  nindirectsyms 42
+      extreloff 0
+        nextrel 0
+      locreloff 0
+        nlocrel 0
+Load command 9
+     cmd LC_UUID
+ cmdsize 24
+    uuid 96475AFB-C64F-3A25-9084-E611BA374EC6
+Load command 10
+       cmd LC_BUILD_VERSION
+   cmdsize 32
+  platform ios
+       sdk 13.4
+     minos 14.0
+    ntools 1
+      tool ld
+   version 857.1
+Load command 11
+      cmd LC_SOURCE_VERSION
+  cmdsize 16
+  version 0.0
+Load command 12
+          cmd LC_ENCRYPTION_INFO_64
+      cmdsize 24
+     cryptoff 16384
+    cryptsize 32768
+      cryptid 0
+          pad 0
+Load command 13
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name /usr/lib/libobjc.A.dylib (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 228.0.0
+compatibility version 1.0.0
+Load command 14
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/Foundation.framework/Foundation (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 1675.129.0
+compatibility version 300.0.0
+Load command 15
+          cmd LC_LOAD_DYLIB
+      cmdsize 96
+         name /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 1675.129.0
+compatibility version 150.0.0
+Load command 16
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name /System/Library/Frameworks/UIKit.framework/UIKit (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 61000.0.0
+compatibility version 1.0.0
+Load command 17
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name @rpath/libcolorpicker.dylib (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 18
+          cmd LC_LOAD_DYLIB
+      cmdsize 96
+         name /System/Library/PrivateFrameworks/Preferences.framework/Preferences (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 1.0.0
+compatibility version 1.0.0
+Load command 19
+          cmd LC_LOAD_DYLIB
+      cmdsize 48
+         name /usr/lib/libc++.1.dylib (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 902.0.0
+compatibility version 1.0.0
+Load command 20
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name /usr/lib/libSystem.B.dylib (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 1281.100.1
+compatibility version 1.0.0
+Load command 21
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/QuartzCore.framework/QuartzCore (offset 24)
+   time stamp 2 Thu Jan  1 00:00:02 1970
+      current version 1.11.0
+compatibility version 1.2.0
+Load command 22
+          cmd LC_RPATH
+      cmdsize 40
+         path /var/jb/Library/Frameworks (offset 12)
+Load command 23
+          cmd LC_RPATH
+      cmdsize 32
+         path /var/jb/usr/lib (offset 12)
+Load command 24
+      cmd LC_FUNCTION_STARTS
+  cmdsize 16
+  dataoff 84008
+ datasize 56
+Load command 25
+      cmd LC_DATA_IN_CODE
+  cmdsize 16
+  dataoff 84064
+ datasize 0
+Load command 26
+      cmd LC_CODE_SIGNATURE
+  cmdsize 16
+  dataoff 87200
+ datasize 1680

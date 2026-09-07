@@ -1,10 +1,10 @@
-Architecture: iphoneos-arm
-Author: ren7995
-Depends: firmware (>= 13.0), mobilesubstrate, preferenceloader, ws.hbang.alderis (>= 1.1)
-Conflicts: com.irepo.boxy4, me.kritanta.homepluspro
-Description: A proper homescreen layout editor for iOS 13-16
-Maintainer: ren7995
-Name: Atria
 Package: me.lau.atria
+Name: Atria
+Version: 1.4.1-17baseline1
+Architecture: iphoneos-arm64
+Description: Atria iOS 17 source-build baseline (not yet validated on device)
+Maintainer: Local build
+Author: ren7995
 Section: Tweaks
-Version: 1.4.1
+Depends: firmware (>= 15.0), mobilesubstrate, preferenceloader, ws.hbang.alderis (>= 1.1)
+Conflicts: com.irepo.boxy4, me.kritanta.homepluspro

@@ -1,0 +1,17 @@
+Fat headers
+fat_magic FAT_MAGIC
+nfat_arch 2
+architecture arm64
+    cputype CPU_TYPE_ARM64
+    cpusubtype CPU_SUBTYPE_ARM64_ALL
+    capabilities 0x0
+    offset 16384
+    size 213136
+    align 2^14 (16384)
+architecture arm64e
+    cputype CPU_TYPE_ARM64
+    cpusubtype CPU_SUBTYPE_ARM64E
+    capabilities CPU_SUBTYPE_ARM64E_PTRAUTH_VERSION 0
+    offset 245760
+    size 228480
+    align 2^14 (16384)
