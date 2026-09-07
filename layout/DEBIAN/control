@@ -1,10 +1,15 @@
 Package: me.lau.atria
 Name: Atria
-Version: 1.4.1-17baseline1
+Version: 1.4.1-sgdnfix
 Architecture: iphoneos-arm64
-Description: Atria iOS 17 source-build baseline (not yet validated on device)
-Maintainer: Local build
-Author: ren7995
+Description: Unofficial Atria fork by s-gdn to fix editor functionality on iOS 17. No more safe mode crashes.
+ .
+ Tested and confirmed working on iPhone 12, iOS 17.1.1, Dopamine 3.0.9 rootless.
+ If not working on your device / version, please raise an issue at https://github.com/s-gdn/Atria-iOS17
+ .
+ All credits go to original creator of this amazing tweak ren7995.
+Maintainer: s-gdn
+Author: ren7995, s-gdn
 Section: Tweaks
 Depends: firmware (>= 15.0), mobilesubstrate, preferenceloader, ws.hbang.alderis (>= 1.1)
 Conflicts: com.irepo.boxy4, me.kritanta.homepluspro
