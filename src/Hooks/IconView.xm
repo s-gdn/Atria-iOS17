@@ -214,7 +214,8 @@
 	// Add shortcut item to activate editor
 	// I found this really cool gist to allow me to do this, tyvm to the author <3
 	// Link: https://gist.github.com/MTACS/8e26c4f430b27d6a1d2a11f0a828f250
-	NSMutableArray *items = [%orig mutableCopy];
+	NSArray *originalItems = %orig;
+	NSMutableArray *items = [originalItems mutableCopy];
 	if(!(IconIsInRoot(self) || IconIsInDock(self))) return items;
 	if(!items) items = [NSMutableArray new];
 
