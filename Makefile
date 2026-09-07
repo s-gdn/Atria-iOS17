@@ -2,12 +2,14 @@ export THEOS_PACKAGE_SCHEME = rootless
 TARGET = iphone:clang:16.5:15.0
 ARCHS = arm64 arm64e
 INSTALL_TARGET_PROCESSES = SpringBoard
+Atria_LOGOS_DEFAULT_GENERATOR = internal
 
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = Atria
 Atria_FILES = $(shell find src -type f \( -name '*.m' -o -name '*.xm' \) ! -name 'AtriaDiagnostic.xm')
 Atria_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
+Atria_CFLAGS += -Wno-c++11-narrowing
 Atria_FRAMEWORKS = Foundation UIKit CoreText QuartzCore
 Atria_LIBRARIES = substrate
 
