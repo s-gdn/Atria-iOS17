@@ -1,6 +1,6 @@
 Package: me.lau.atria
 Name: Atria
-Version: 1.4.1-sgdnfix
+Version: 1.4.1-sgdnfix2
 Architecture: iphoneos-arm64
 Description: Unofficial Atria fork by s-gdn to fix editor functionality on iOS 17. No more safe mode crashes.
  .
