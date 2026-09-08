@@ -60,36 +60,6 @@ static id AtriaGetObject(id object, SEL selector)
     return controller;
 }
 
-- (void)_atriaLogOriginalHomeScreenHost
-{
-    id iconController =
-        [objc_getClass("SBIconController") sharedInstance];
-
-    id originalView =
-        AtriaGetObject(iconController, @selector(view));
-
-    if ([originalView isKindOfClass:[UIView class]]) {
-        UIView *view = (UIView *)originalView;
-
-    } 
-
-    id iconManager =
-        AtriaGetObject(iconController, @selector(iconManager));
-
-
-    id rootController =
-        AtriaGetObject(iconManager, @selector(rootViewController));
-
-
-    if ([rootController isKindOfClass:[UIViewController class]]) {
-        UIViewController *controller = (UIViewController *)rootController;
-
-    }
-
-    id rootFolderController =
-        AtriaGetObject(iconManager, @selector(rootFolderController));
-
-}
 
 // Find the foreground SpringBoard window.
 - (UIWindow *)_atriaActiveWindow
@@ -151,7 +121,6 @@ static id AtriaGetObject(id object, SEL selector)
         // Start edit
         if (_isEditing) return;
 
-        [self _atriaLogOriginalHomeScreenHost];
 
         UIViewController *rootController =
             [self _atriaOriginalRootController];
@@ -237,7 +206,6 @@ static id AtriaGetObject(id object, SEL selector)
 }
 
 - (void)presentEditAlert {
-    [self _atriaLogOriginalHomeScreenHost];
     ARITweakManager *manager = [ARITweakManager sharedInstance];
 
     UIAlertController *alert = [UIAlertController
