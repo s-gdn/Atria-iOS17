@@ -144,7 +144,6 @@ static void AtriaLog(NSString *fmt, ...)
 {
     UIApplication *application = [UIApplication sharedApplication];
 
-    NSInteger sceneIndex = 0;
 
     for (UIScene *scene in application.connectedScenes)
     {
@@ -153,8 +152,6 @@ static void AtriaLog(NSString *fmt, ...)
             continue;
 
         UIWindowScene *windowScene = (UIWindowScene *)scene;
-
-        NSInteger i = 0;
 
         for (UIWindow *window in windowScene.windows)
         {
@@ -166,7 +163,6 @@ static void AtriaLog(NSString *fmt, ...)
         }
     }
 
-    NSInteger i = 0;
 
     for (UIWindow *window in application.windows)
     {
