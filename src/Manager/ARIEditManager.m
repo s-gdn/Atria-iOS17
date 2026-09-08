@@ -3,7 +3,16 @@
 #import "ARITweakManager.h"
 #include <objc/runtime.h>
 #include <stdarg.h>
+#include <objc/message.h>
 
+
+static id AtriaGetObject(id object, SEL selector)
+{
+    if (!object || ![object respondsToSelector:selector])
+        return nil;
+
+    return ((id (*)(id, SEL))objc_msgSend)(object, selector);
+}
 
 // TEMPORARY LOGGING
 static void AtriaLog(NSString *fmt, ...)
@@ -22,6 +31,11 @@ static void AtriaLog(NSString *fmt, ...)
     if (!fh) {
         [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
         fh = [NSFileHandle fileHandleForWritingAtPath:path];
+    }
+
+    if (!fh) {
+    NSLog(@"[Atria] Failed to open diagnostic log: %@", path);
+    return;
     }
 
     [fh seekToEndOfFile];
@@ -53,23 +67,87 @@ static void AtriaLog(NSString *fmt, ...)
     return manager;
 }
 
+- (void)_atriaLogOriginalHomeScreenHost
+{
+    id iconController =
+        [objc_getClass("SBIconController") sharedInstance];
 
+    AtriaLog(@"========== ORIGINAL ATRIA HOST ==========");
+
+    AtriaLog(@"SBIconController = %p %@",
+             iconController,
+             NSStringFromClass([iconController class]));
+
+    AtriaLog(@"is UIViewController = %d",
+             [iconController isKindOfClass:[UIViewController class]]);
+
+    AtriaLog(@"responds to view = %d",
+             [iconController respondsToSelector:@selector(view)]);
+
+    id originalView =
+        AtriaGetObject(iconController, @selector(view));
+
+    if ([originalView isKindOfClass:[UIView class]]) {
+        UIView *view = (UIView *)originalView;
+
+        AtriaLog(@"Original view = %p %@",
+                 view,
+                 NSStringFromClass([view class]));
+
+        AtriaLog(@"Original view window = %p %@",
+                 view.window,
+                 NSStringFromClass([view.window class]));
+
+        AtriaLog(@"Original view superview = %p %@",
+                 view.superview,
+                 NSStringFromClass([view.superview class]));
+    } else {
+        AtriaLog(@"Original view unavailable or not a UIView");
+    }
+
+    id iconManager =
+        AtriaGetObject(iconController, @selector(iconManager));
+
+    AtriaLog(@"Icon manager = %p %@",
+             iconManager,
+             NSStringFromClass([iconManager class]));
+
+    id rootController =
+        AtriaGetObject(iconManager, @selector(rootViewController));
+
+    AtriaLog(@"Icon manager root controller = %p %@",
+             rootController,
+             NSStringFromClass([rootController class]));
+
+    if ([rootController isKindOfClass:[UIViewController class]]) {
+        UIViewController *controller = (UIViewController *)rootController;
+
+        AtriaLog(@"Manager root view = %p %@",
+                 controller.view,
+                 NSStringFromClass([controller.view class]));
+
+        AtriaLog(@"Manager root window = %p %@",
+                 controller.view.window,
+                 NSStringFromClass([controller.view.window class]));
+    }
+
+    id rootFolderController =
+        AtriaGetObject(iconManager, @selector(rootFolderController));
+
+    AtriaLog(@"Root folder controller = %p %@",
+             rootFolderController,
+             NSStringFromClass([rootFolderController class]));
+}
 
 // Find the foreground SpringBoard window.
 - (UIWindow *)_atriaActiveWindow
 {
     UIApplication *application = [UIApplication sharedApplication];
 
-    AtriaLog(@"========== _atriaActiveWindow ==========");
-
     NSInteger sceneIndex = 0;
 
     for (UIScene *scene in application.connectedScenes)
     {
-        AtriaLog(@"Scene %ld class=%@ state=%ld",
-                 (long)sceneIndex++,
-                 NSStringFromClass(scene.class),
-                 (long)scene.activationState);
 
         if (![scene isKindOfClass:[UIWindowScene class]])
             continue;
@@ -80,35 +158,18 @@ static void AtriaLog(NSString *fmt, ...)
 
         for (UIWindow *window in windowScene.windows)
         {
-            AtriaLog(@"  Window %ld %@ key=%d hidden=%d level=%f root=%@",
-                (long)i++,
-                NSStringFromClass(window.class),
-                window.isKeyWindow,
-                window.hidden,
-                window.windowLevel,
-                NSStringFromClass(window.rootViewController.class));
 
             if (window.isKeyWindow && window.rootViewController)
             {
-                AtriaLog(@"--> USING FOREGROUND WINDOW %@", window);
                 return window;
             }
         }
     }
 
-    AtriaLog(@"NO FOREGROUND WINDOW FOUND");
-    AtriaLog(@"ENTERING FALLBACK");
-
     NSInteger i = 0;
 
     for (UIWindow *window in application.windows)
     {
-        AtriaLog(@"Fallback window %ld %@ key=%d hidden=%d root=%@",
-            (long)i++,
-            NSStringFromClass(window.class),
-            window.isKeyWindow,
-            window.hidden,
-            NSStringFromClass(window.rootViewController.class));
 
         if (window.isKeyWindow && window.rootViewController)
         {
@@ -125,24 +186,15 @@ static void AtriaLog(NSString *fmt, ...)
 // Find a real UIViewController capable of presenting UIKit alerts.
 - (UIViewController *)_atriaPresentationController {
     UIWindow *window = [self _atriaActiveWindow];
-    AtriaLog(@"Presentation root = %@",
-    window.rootViewController);
 
     UIViewController *controller = window.rootViewController;
 
-    AtriaLog(@"Root VC = %p %@", controller,
-         NSStringFromClass(controller.class));
 
     while (controller.presentedViewController)
     {
-        AtriaLog(@"Presented VC = %p %@",
-            controller.presentedViewController,
-            NSStringFromClass(controller.presentedViewController.class));
 
         controller = controller.presentedViewController;
     }
-
-    AtriaLog(@"Final presenter = %@", controller);
 
     return controller;
 }
@@ -154,19 +206,10 @@ static void AtriaLog(NSString *fmt, ...)
         // Start edit
         if (_isEditing) return;
 
+        [self _atriaLogOriginalHomeScreenHost];
+
         UIWindow *window = [self _atriaActiveWindow];
         UIView *containerView = window.rootViewController.view;
-
-        AtriaLog(@"Chosen window = %p (%@)",
-         window,
-         NSStringFromClass(window.class));
-        AtriaLog(@"Chosen root VC = %@", window.rootViewController);
-        AtriaLog(@"Chosen root view = %@", window.rootViewController.view);
-
-        if (_current.window == window)
-            AtriaLog(@"WINDOW MATCH");
-        else
-            AtriaLog(@"WINDOW MISMATCH");
 
         if (!containerView) {
             NSLog(@"[Atria] Cannot open editor: no valid SpringBoard container view");
@@ -179,10 +222,6 @@ static void AtriaLog(NSString *fmt, ...)
         // Check if this list view has custom config
         _current = [[ARITweakManager sharedInstance] currentListView];
 
-        AtriaLog(@"Current list view = %@", _current);
-        AtriaLog(@"Current list window = %p",
-         ((UIView *)_current).window);
-        AtriaLog(@"Current list superview = %@", _current.superview);
 
         // No per page layout for the following
         if (![targetLoc isEqualToString:@"dock"] &&
@@ -251,6 +290,7 @@ static void AtriaLog(NSString *fmt, ...)
 }
 
 - (void)presentEditAlert {
+    [self _atriaLogOriginalHomeScreenHost];
     ARITweakManager *manager = [ARITweakManager sharedInstance];
 
     UIAlertController *alert = [UIAlertController
