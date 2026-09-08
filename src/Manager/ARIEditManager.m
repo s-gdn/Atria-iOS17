@@ -14,34 +14,7 @@ static id AtriaGetObject(id object, SEL selector)
     return ((id (*)(id, SEL))objc_msgSend)(object, selector);
 }
 
-// TEMPORARY LOGGING
-static void AtriaLog(NSString *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
 
-    NSString *msg = [[NSString alloc] initWithFormat:fmt arguments:args];
-    va_end(args);
-
-    NSString *line = [NSString stringWithFormat:@"%@\n", msg];
-
-    NSString *path = @"/var/mobile/Library/Logs/AtriaDebug.log";
-
-    NSFileHandle *fh = [NSFileHandle fileHandleForWritingAtPath:path];
-    if (!fh) {
-        [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
-        fh = [NSFileHandle fileHandleForWritingAtPath:path];
-    }
-
-    if (!fh) {
-    NSLog(@"[Atria] Failed to open diagnostic log: %@", path);
-    return;
-    }
-
-    [fh seekToEndOfFile];
-    [fh writeData:[line dataUsingEncoding:NSUTF8StringEncoding]];
-    [fh closeFile];
-}
 
 
 @implementation ARIEditManager {
@@ -79,24 +52,10 @@ static void AtriaLog(NSString *fmt, ...)
         AtriaGetObject(iconManager, @selector(rootViewController));
 
     if (![rootController isKindOfClass:[UIViewController class]]) {
-        AtriaLog(@"Original root controller unavailable: %@",
-                 rootController);
         return nil;
     }
 
     UIViewController *controller = (UIViewController *)rootController;
-
-    AtriaLog(@"Original root controller = %p %@",
-             controller,
-             NSStringFromClass(controller.class));
-
-    AtriaLog(@"Original root view = %p %@",
-             controller.view,
-             NSStringFromClass(controller.view.class));
-
-    AtriaLog(@"Original root window = %p %@",
-             controller.view.window,
-             NSStringFromClass(controller.view.window.class));
 
     return controller;
 }
@@ -106,71 +65,30 @@ static void AtriaLog(NSString *fmt, ...)
     id iconController =
         [objc_getClass("SBIconController") sharedInstance];
 
-    AtriaLog(@"========== ORIGINAL ATRIA HOST ==========");
-
-    AtriaLog(@"SBIconController = %p %@",
-             iconController,
-             NSStringFromClass([iconController class]));
-
-    AtriaLog(@"is UIViewController = %d",
-             [iconController isKindOfClass:[UIViewController class]]);
-
-    AtriaLog(@"responds to view = %d",
-             [iconController respondsToSelector:@selector(view)]);
-
     id originalView =
         AtriaGetObject(iconController, @selector(view));
 
     if ([originalView isKindOfClass:[UIView class]]) {
         UIView *view = (UIView *)originalView;
 
-        AtriaLog(@"Original view = %p %@",
-                 view,
-                 NSStringFromClass([view class]));
-
-        AtriaLog(@"Original view window = %p %@",
-                 view.window,
-                 NSStringFromClass([view.window class]));
-
-        AtriaLog(@"Original view superview = %p %@",
-                 view.superview,
-                 NSStringFromClass([view.superview class]));
-    } else {
-        AtriaLog(@"Original view unavailable or not a UIView");
-    }
+    } 
 
     id iconManager =
         AtriaGetObject(iconController, @selector(iconManager));
 
-    AtriaLog(@"Icon manager = %p %@",
-             iconManager,
-             NSStringFromClass([iconManager class]));
 
     id rootController =
         AtriaGetObject(iconManager, @selector(rootViewController));
 
-    AtriaLog(@"Icon manager root controller = %p %@",
-             rootController,
-             NSStringFromClass([rootController class]));
 
     if ([rootController isKindOfClass:[UIViewController class]]) {
         UIViewController *controller = (UIViewController *)rootController;
 
-        AtriaLog(@"Manager root view = %p %@",
-                 controller.view,
-                 NSStringFromClass([controller.view class]));
-
-        AtriaLog(@"Manager root window = %p %@",
-                 controller.view.window,
-                 NSStringFromClass([controller.view.window class]));
     }
 
     id rootFolderController =
         AtriaGetObject(iconManager, @selector(rootFolderController));
 
-    AtriaLog(@"Root folder controller = %p %@",
-             rootFolderController,
-             NSStringFromClass([rootFolderController class]));
 }
 
 // Find the foreground SpringBoard window.
@@ -203,12 +121,9 @@ static void AtriaLog(NSString *fmt, ...)
 
         if (window.isKeyWindow && window.rootViewController)
         {
-            AtriaLog(@"--> USING FALLBACK WINDOW %@", window);
             return window;
         }
     }
-
-    AtriaLog(@"FAILED TO FIND WINDOW");
 
     return nil;
 }
