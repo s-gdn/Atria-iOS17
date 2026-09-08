@@ -1,5 +1,7 @@
 # Atria iOS 17
-Unofficial port of Atria to newer iOS versions.
+Unofficial port of Atria to iOS 17 versions.
+
+iOS 18-26 currently not supported, will crash to safe-mode.
 
 Open this in browser to add my repo: https://s-gdn.github.io/repo.html
 
