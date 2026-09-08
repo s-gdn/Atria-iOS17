@@ -67,6 +67,40 @@ static void AtriaLog(NSString *fmt, ...)
     return manager;
 }
 
+- (UIViewController *)_atriaOriginalRootController
+{
+    id iconController =
+        [objc_getClass("SBIconController") sharedInstance];
+
+    id iconManager =
+        AtriaGetObject(iconController, @selector(iconManager));
+
+    id rootController =
+        AtriaGetObject(iconManager, @selector(rootViewController));
+
+    if (![rootController isKindOfClass:[UIViewController class]]) {
+        AtriaLog(@"Original root controller unavailable: %@",
+                 rootController);
+        return nil;
+    }
+
+    UIViewController *controller = (UIViewController *)rootController;
+
+    AtriaLog(@"Original root controller = %p %@",
+             controller,
+             NSStringFromClass(controller.class));
+
+    AtriaLog(@"Original root view = %p %@",
+             controller.view,
+             NSStringFromClass(controller.view.class));
+
+    AtriaLog(@"Original root window = %p %@",
+             controller.view.window,
+             NSStringFromClass(controller.view.window.class));
+
+    return controller;
+}
+
 - (void)_atriaLogOriginalHomeScreenHost
 {
     id iconController =
@@ -204,8 +238,10 @@ static void AtriaLog(NSString *fmt, ...)
 
         [self _atriaLogOriginalHomeScreenHost];
 
-        UIWindow *window = [self _atriaActiveWindow];
-        UIView *containerView = window.rootViewController.view;
+        UIViewController *rootController =
+            [self _atriaOriginalRootController];
+
+        UIView *containerView = rootController.view;
 
         if (!containerView) {
             NSLog(@"[Atria] Cannot open editor: no valid SpringBoard container view");
