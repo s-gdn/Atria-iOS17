@@ -18,5 +18,4 @@ To build your own copy:
 4. Download the generated `.deb` from the workflow artifacts.
 
 The resulting package is intended for rootless jailbreaks.
-Compatibility has only been confirmed on iPhone 12 running
-iOS 17.1.1 with Dopamine 3.0.9.
+Compatibility has only been confirmed on iOS 17.1.1 - 17.3.1
