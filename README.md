@@ -17,5 +17,5 @@ To build your own copy:
 3. Run the build workflow.
 4. Download the generated `.deb` from the workflow artifacts.
 
-The resulting package is intended for rootless jailbreaks.
+The resulting package is intended for rootless / roothide jailbreaks.
 Compatibility has only been confirmed on iOS 17.1.1 - 17.3.1
